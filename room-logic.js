@@ -100,7 +100,7 @@ Room = (function(){
     });
   };
 
-  Room.removeFromRoom = function(userId, roomId) {
+  Room.removeUser = function(userId, roomId) {
     var playerQueryObject = getUserToRemove(userId);
     removePlayer(playerQueryObject, roomId);
     Meteor.clearInterval(heartBeat);

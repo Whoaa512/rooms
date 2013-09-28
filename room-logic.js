@@ -3,12 +3,14 @@
 // heartbeat will expire and we'll remove the user after a period of time.
 var heartBeat;
 
-Meteor.autorun(function () {
-  if (Session.get('currentRoom')) {
-    heartBeat = Meteor.setInterval(function(){
-      LoggedUsers.update({'id': Session.get('currentUser')}, {$set: {stamp: new Date().getTime() } } );
-    }, 1000);
-  }
+Meteor.startup(function() {
+  Meteor.autorun(function () {
+    if (Session.get('currentRoom')) {
+      heartBeat = Meteor.setInterval(function(){
+        LoggedUsers.update({'id': Session.get('currentUser')}, {$set: {stamp: new Date().getTime() } } );
+      }, 1000);
+    }
+  });
 });
 
 Room = (function(){

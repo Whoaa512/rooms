@@ -82,7 +82,7 @@ if(Meteor.isClient){
 
     $(document).on('click', '.joinRoom', function(e){
       if (Session.get('currentRoom')) {
-        Room.removeFromRoom(userId, Session.get('currentRoom'));
+        Room.removeUser(Meteor.userId(), Session.get('currentRoom'));
       }
       Room.addUser(e.currentTarget.id, Session.get('currentUser'));
       Meteor.users.update({_id: Session.get('currentUser') }, {$set:{"profile.currentRoom": e.currentTarget.id}});

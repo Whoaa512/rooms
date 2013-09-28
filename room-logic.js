@@ -7,7 +7,7 @@ Meteor.startup(function() {
   Meteor.autorun(function () {
     if (Session.get('currentRoom')) {
       heartBeat = Meteor.setInterval(function(){
-        LoggedUsers.update({'id': Session.get('currentUser')}, {$set: {stamp: new Date().getTime() } } );
+        LoggedUsers.update({'_id': Session.get('currentUser')}, {$set: {stamp: new Date().getTime() } } );
       }, 1000);
     }
   });
